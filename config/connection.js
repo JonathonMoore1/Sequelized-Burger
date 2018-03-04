@@ -5,12 +5,17 @@ var connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
     password: pw,
-    port: process.env.PORT | 3000,
     database: eatDaBurger_db
 });
 
 connection.connect(function(err) {
-    if (err) throw err;
-    console.log('Connected to MySQL Database');
-    console.log('---------------------------');
+    if (err) {
+        console.error("Error connecting: " + error.stack);
+        return;
+    }
+    console.log('\n-------------------------------------');
+    console.log('Connected to MySQL Database as ID ' + connection.threadId);
+    console.log('-------------------------------------\n');
 });
+
+module.exports = connection;

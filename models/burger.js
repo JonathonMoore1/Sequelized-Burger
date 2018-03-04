@@ -2,15 +2,17 @@
 var orm = require('../config/orm.js');
 
 // ORMs
-
 var ormQuery = {
-    selectAll: orm.selectAll('burgers', 'burger_name', userInput),
-    insertOne: orm.insertOne('burgers', 'burger_name', userInput),
-    updateOne: orm.updateOne('burgers', 'devoured', 1, 'burger_name', userInput)
-}
-// orm.selectAll('burgers', 'burger_name', userInput);
-// orm.insertOne('burgers', 'burger_name', userInput);
-// orm.updateOne('burgers', 'devoured', 1, 'burger_name', userInput);
+    selectAll: function(userInput) {
+        orm.selectAll('burgers', 'burger_name', userInput)
+    },
+    insertOne: function(userInput) {
+        orm.insertOne('burgers', 'burger_name', userInput)
+    },
+    updateOne: function(userInput) {
+        orm.updateOne('burgers', 'devoured', 1, 'burger_name', userInput)
+    }
+};
 
 // Export ORMs
 module.exports = ormQuery;

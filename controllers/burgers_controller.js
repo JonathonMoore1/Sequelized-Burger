@@ -5,9 +5,8 @@ require('../models/burger.js');
 // Router
 var app = express();
 
-app.get('/index', function(req, res) {
+app.get('*', function(req, res) {
     res.sendFile('../views/layouts/main.handlebars');
     console.log("Displaying page...");
 });
 
-app.post('')

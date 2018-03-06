@@ -1,3 +1,4 @@
+require('dotenv').config();
 var mysql = require('mysql');
 var pw = process.env.MYSQL_PW;
 
@@ -10,8 +11,8 @@ var connection = mysql.createConnection({
 
 connection.connect(function(err) {
     if (err) {
-        //console.error("Error connecting: " + error.stack);
-        if (err) throw err;
+        console.error("Error connecting: " + err.stack);
+       // if (err) throw err;
         return;
     }
     console.log('\n-------------------------------------');

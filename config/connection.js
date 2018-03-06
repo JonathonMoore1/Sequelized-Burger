@@ -5,12 +5,13 @@ var connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
     password: pw,
-    database: eatDaBurger_db
+    database: 'eatDaBurger_db'
 });
 
 connection.connect(function(err) {
     if (err) {
-        console.error("Error connecting: " + error.stack);
+        //console.error("Error connecting: " + error.stack);
+        if (err) throw err;
         return;
     }
     console.log('\n-------------------------------------');

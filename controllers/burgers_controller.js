@@ -1,12 +1,14 @@
 // Dependencies
-var express = require('express');
 require('../models/burger.js');
+var express = require('express');
+var router = express.Router();
 
 // Router
 var app = express();
 
-app.get('*', function(req, res) {
-    res.sendFile('../views/layouts/main.handlebars');
+router.get('/', function(req, res) {
+    res.sendFile(__dirname + '../views/layouts/main.handlebars');
     console.log("Displaying page...");
 });
 
+module.exports = router;

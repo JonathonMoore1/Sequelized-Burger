@@ -2,9 +2,13 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 
+// Define port 
+var PORT = process.env.PORT | 3000;
+
 // Express Configuration
 var app = express();
-var PORT = process.env.PORT | 3000;
+
+app.use(express.static('public'));
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -15,7 +19,8 @@ app.engine('handlebars', exphbs({ defaultLayout: 'main' }));
 app.set('view engine', 'handlebars');
 
 // Import Routes
-require('./controllers/burgers_controller.js');
+var routes = require('./controllers/burgers_controller.js');
+app.use(routes);
 
 // Listener
 app.listen(PORT, function(err) {

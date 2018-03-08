@@ -1,0 +1,46 @@
+<div class="container">
+    <div class="row">
+
+        <div class="col">
+            <div class="float-left">
+                <h2>Burger Menu</h2>
+                <ul>
+                    {{#each burgers}} {{#unless devoured}} {{> burgers/burgers-block devoured=false }} {{/unless}} {{/each}}
+                </ul>
+            </div>
+        </div>
+
+        <div class="col">
+            <img class="rounded text-center mb-5" style="width: 100%; height: 18rem;" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSlcKNVlN7wtQ7Bzxq3e21U7-2clxeF-N0QGQRpl80z5fucg1cWDw">
+        </div>
+
+        <div class="col">
+            <div class="float-right">
+                <h2>Devoured</h2>
+                <ul>
+                    {{#each burgers}} {{#if devoured}} {{> burgers/burgers-block devoured=true }} {{/if}} {{/each}}
+                </ul>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="row">
+        <div class="col"></div>
+        <div class="card add-burger" style="width: 18rem;">
+            {{!-- <img class="card-img-top" src="../public/assets/img/if_Burger_653249.png" alt="Card image cap"> --}}
+            <div class="card-body">
+                <div class="form">
+                    <div class="form-group">
+                        <input type="input" class="form-control" id="burger-input" placeholder="Dolphin burger...">
+                        <h5 class="card-text">
+                            Enter the burger you want to eat and hit "Submit"!
+                        </h5>
+                        <button class="btn btn-primary mt-2 mb-2" type="submit">Submit</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col"></div>
+    </div>
+</div>

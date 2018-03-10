@@ -4,7 +4,7 @@ var express = require('express');
 var router = express.Router();
 
 // Router
-// *** How do I pass in data to selectAll? ***
+// ======================================
 router.get('/', function(req, res) {
     // ***
     burger.selectAll(function(data) {
@@ -14,19 +14,20 @@ router.get('/', function(req, res) {
         console.log(hbsObj);
         res.render('index', hbsObj);
     });
-    // res.render('index');
-   
 });
 
-// router.get("/", function(req, res) {
-//     cat.all(function(data) {
-//       var hbsObject = {
-//         cats: data
-//       };
-//       console.log(hbsObject);
-//       res.render("index", hbsObject);
-//     });
-//   });
+router.post("/api/burgers", function (req, res) {
+    burger.insertOne('burger_name', req.body.burger_name, 
+    function(result) {
+        res.json({ id: res.insertId })
+    });
+});
+
+router.put('/api/burgers/:id', function(req, res) {
+    var condition = 'id = ' + req.params.id;
+    console.log('condition: ' + condition);
+})
+
 
 module.exports = router;
 

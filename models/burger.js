@@ -8,8 +8,8 @@ var burger = {
             cb(res);
         });
     },
-    insertOne: function(cb) {
-        orm.insertOne('burgers', 'burger_name', function(res) {
+    insertOne: function(cb, userInput) {
+        orm.insertOne('burgers', 'burger_name', userInput, function(res) {
             cb(res);
         });
     },

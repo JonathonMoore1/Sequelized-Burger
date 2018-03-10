@@ -1,12 +1,16 @@
 <div class="container">
-    
+
     <div class="row" style="font-family: 'Butcherman', cursive">
 
         <div class="col">
             <div class="float-left">
                 <h2>Burger Menu</h2>
                 <ul>
-                    {{#each burgers}} {{#unless devoured}} {{> burgers/burgers-block devoured=false }} {{/unless}} {{/each}}
+                    {{#each burgers}} 
+                        {{#unless devoured}} 
+                            {{> burgers}} 
+                        {{/unless}} 
+                    {{/each}}
                 </ul>
             </div>
         </div>

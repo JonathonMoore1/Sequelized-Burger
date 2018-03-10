@@ -4,16 +4,18 @@ var express = require('express');
 var router = express.Router();
 
 // Router
-
+// *** How do I pass in data to selectAll? ***
 router.get('/', function(req, res) {
-    // burger.selectAll(function(data) {
-    //     var hbsObj = {
-    //         burgers: data
-    //     };
-    //     console.log(hbsObj);
-    //     res.render('index', hbsObj);
-    // })
+    // ***
+    burger.selectAll(function(data) {
+        var hbsObj = {
+            burgers: data
+        };
+        console.log(hbsObj);
+        res.render('index', hbsObj);
+    });
     res.render('index');
+   
 });
 
 // router.get("/", function(req, res) {

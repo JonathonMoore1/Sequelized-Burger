@@ -5,8 +5,9 @@ var router = express.Router();
 
 // Router
 // ======================================
+
+// GET route to load the page with the Handlebars object
 router.get('/', function(req, res) {
-    // ***
     burger.selectAll(function(data) {
         var hbsObj = {
             burgers: data
@@ -16,6 +17,7 @@ router.get('/', function(req, res) {
     });
 });
 
+// POST route
 router.post("/api/burgers", function (req, res) {
     burger.insertOne(req.body.burger_name,
     function(result) {

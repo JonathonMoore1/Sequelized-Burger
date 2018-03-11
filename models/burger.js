@@ -8,13 +8,13 @@ var burger = {
             cb(res);
         });
     },
-    insertOne: function(cb, userInput) {
-        orm.insertOne('burgers', 'burger_name', userInput, function(res) {
+    insertOne: function(val, cb) {
+        orm.insertOne('burgers', 'burger_name', val, function(res) {
             cb(res);
         });
     },
-    updateOne: function(cb) {
-        orm.updateOne('burgers', 'devoured', 1, 'burger_name', function(res) {
+    updateOne: function(condition, cb) {
+        orm.updateOne('burgers', 'devoured', 1, condition, function(res) {
             cb(res);
         });
     }

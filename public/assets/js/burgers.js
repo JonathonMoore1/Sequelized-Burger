@@ -1,5 +1,5 @@
 $(function () {
-    $('.create-form').on('submit', function (e) {
+    $('#submit').on('click', function (e) {
         e.preventDefault();
 
         var newBurger = {
@@ -12,7 +12,7 @@ $(function () {
             data: newBurger
         }).then(function () {
             console.log('***New burger created***');
-            location.redirect('/');
+            location.reload();
         })
     });
 
@@ -23,7 +23,7 @@ $(function () {
             type: 'PUT'
         }).then(function() {
             console.log('***Burger devoured***');
-            location.redirect('/');
+            location.reload();
         })
     });
 });

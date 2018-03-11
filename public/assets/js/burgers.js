@@ -1,29 +1,28 @@
-$(document).on('ready', function(e) {
-    
-    $('.create-form').on('submit', function(e) {
+$(function () {
+    $('.create-form').on('submit', function (e) {
         e.preventDefault();
-        
+
         var newBurger = {
-            burger: $('#burger-input').val().trim()
+            burger_name: $('#burger-input').val().trim(),
+            devoured: 0
         };
 
-       $.ajax('/api/burgers', {
-           type: 'POST',
-           data: newBurger
-       }).then(function() {
-           console.log('\n================');
-           console.log('New burger added');
-           console.log('================\n');
+        $.ajax('/api/burgers', {
+            type: 'POST',
+            data: newBurger
+        }).then(function () {
+            console.log('***New burger created***');
+            location.redirect('/');
+        })
+    });
 
-           location.reload();
-       });
-    })
+    $('.devour-burger').on('click', function(e) {
+        var id = $(this).data('id');
 
-    // $('.devour-burger').on('click', function() {
-
-    // })
-
-
-
-
-})
+        $.ajax('/api/burgers/' + id, {
+            type: 'PUT'
+        }).then(function() {
+            console.log('***Burger devoured***');
+        })
+    });
+});

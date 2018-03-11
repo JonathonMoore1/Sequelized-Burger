@@ -25,7 +25,11 @@
             <div class="float-right">
                 <h2>Devoured</h2>
                 <ul>
-                    {{#each burgers}} {{#if devoured}} {{> burgers/burgers-block devoured=true }} {{/if}} {{/each}}
+                    {{#each burgers}} 
+                        {{#if devoured}} 
+                            {{> burgers/burger-block devoured=true }} 
+                        {{/if}} 
+                    {{/each}}
                 </ul>
             </div>
         </div>
@@ -42,7 +46,7 @@
                         <h5 class="card-text mt-1 mb-5">
                             Enter the burger you want to eat and hit "Submit"!
                         </h5>
-                        <button class="btn btn-primary mt-2" type="submit" href="/api/burgers" style="width: 100%">Submit</button>
+                        <button class="btn btn-primary mt-2" type="submit" style="width: 100%">Submit</button>
                     </div>
                 </div>
             </div>

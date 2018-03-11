@@ -25,5 +25,5 @@ app.use(routes);
 // Listener
 app.listen(PORT, function(err) {
     if (err) throw err;
-    console.log("Listening on PORT: " + PORT);
+    console.log("\nListening on PORT: " + PORT);
 });

@@ -23,6 +23,7 @@ $(function () {
             type: 'PUT'
         }).then(function() {
             console.log('***Burger devoured***');
+            location.redirect('/');
         })
     });
 });

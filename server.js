@@ -1,6 +1,7 @@
 // Dependencies
 var express = require('express');
 var bodyParser = require('body-parser');
+var path = require('path');
 
 // Define port 
 var PORT = process.env.PORT | 3000;
@@ -8,7 +9,8 @@ var PORT = process.env.PORT | 3000;
 // Express Configuration
 var app = express();
 
-app.use(express.static('public'));
+// Public files would only load with this configuration.
+app.use('/public', express.static(path.join(__dirname, 'public')));
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());

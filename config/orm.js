@@ -34,6 +34,16 @@ var orm = {
                 cb(res);
             }
         );
+    },
+    resetAll: function(table, cb) {
+        var queryString = 'TRUNCATE TABLE ' + table;
+        connection.query(
+            queryString, [table],
+            function(err, res) {
+                if (err) throw err;
+                cb(res);
+            }
+        )
     }
 }
 

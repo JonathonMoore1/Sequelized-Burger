@@ -17,6 +17,11 @@ var burger = {
         orm.updateOne('burgers', 'devoured', 1, condition, function(res) {
             cb(res);
         });
+    },
+    resetAll: function(table, cb) {
+        orm.resetAll('burgers', function(res) {
+            cb(res);
+        })
     }
 };
 

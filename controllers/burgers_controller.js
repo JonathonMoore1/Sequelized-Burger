@@ -17,7 +17,7 @@ router.get('/', function(req, res) {
     });
 });
 
-// POST route
+// POST route for adding a burger
 router.post("/api/burgers", function (req, res) {
     burger.insertOne(req.body.burger_name,
     function(result) {
@@ -25,6 +25,7 @@ router.post("/api/burgers", function (req, res) {
     });
 });
 
+// PUT route for updating the 'devoured' column
 router.put('/api/burgers/:id', function(req, res) {
     var condition = 'id = ' + req.params.id;
     console.log('condition: ' + condition);

@@ -2,12 +2,23 @@ require('dotenv').config();
 var mysql = require('mysql');
 var pw = process.env.MYSQL_PW;
 
-var connection = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: pw,
-    database: 'eatDaBurger_db'
-});
+// var connection = mysql.createConnection({
+//     host: 'localhost',
+//     user: 'root',
+//     password: pw,
+//     database: 'eatDaBurger_db'
+// });
+
+if (process.env.JAWS_URL) {
+    connection = mysql.createConnection(process.env.JAWS_URL)
+} else {
+    connection = mysql.createConnection({
+        host: 'localhost',
+        user: 'root',
+        password: pw,
+        database: 'eatDaBurger_db'
+    });
+}
 
 connection.connect(function(err) {
     if (err) {

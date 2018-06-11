@@ -4,10 +4,12 @@ var bodyParser = require('body-parser');
 var path = require('path');
 
 // Define port 
-var PORT = process.env.PORT || 3306;
+var PORT = process.env.PORT || 3300;
 
 // Express Configuration
 var app = express();
+var http = require('http').Server(app);
+var io = require('socket.io')(http);
 
 // Public files would only load with this configuration.
 app.use('/public', express.static(path.join(__dirname, 'public')));
@@ -24,8 +26,12 @@ app.set('view engine', 'handlebars');
 var routes = require('./controllers/burgers_controller.js');
 app.use(routes);
 
+io.on('connection', function(socket) {
+    console.log('a user connected');
+});
+
 // Listener
-app.listen(PORT, function(err) {
+http.listen(PORT, function(err) {
     if (err) throw err;
     console.log("\nListening on PORT: " + PORT);
 });

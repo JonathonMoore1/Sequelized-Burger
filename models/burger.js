@@ -21,7 +21,7 @@ var burger = {
     resetAll: function(table, cb) {
         orm.resetAll('burgers', function(res) {
             cb(res);
-        })
+        });
     }
 };
 

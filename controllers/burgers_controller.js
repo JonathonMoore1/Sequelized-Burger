@@ -1,49 +1,71 @@
 // Dependencies
-var burger = require('../models/burger.js');
+var db = require('../models/burger.js');
 var express = require('express');
 var router = express.Router();
 
 // Router
 // ======================================
 
-// GET route to load the page with the Handlebars object
-router.get('/', function(req, res) {
-    burger.selectAll(function(data) {
+router.get("/", function(req, res) {
+    res.redirect("/burgers");
+});
+
+router.get("/burgers", function(req, res) {
+    db.Burger.findAll({
+        include: [db.Customer],
+        order: [
+            ["burger_name", "ASC"]
+        ]
+    })
+    .then(function(dbBurger) {
         var hbsObj = {
-            burgers: data
+            burger: dbBurger
         };
-        console.log(hbsObj);
-        res.render('index', hbsObj);
+        return res.render("index", hbsObj);
     });
 });
 
-// POST route for adding a burger
-router.post("/api/burgers", function (req, res) {
-    burger.insertOne(req.body.burger_name,
-    function(result) {
-        res.json({ id: result.insertId })
+router.post("/burgers/create", function(req, res) {
+    db.Burger.create({
+        burger_name: req.body.burger_name
+    })
+    .then(function(dbBurger) {
+        console.log(dbBurger);
+        res.redirect("/");
     });
 });
 
-// PUT route for updating the 'devoured' column
-router.put('/api/burgers/:id', function(req, res) {
-    var condition = 'id = ' + req.params.id;
-    console.log('condition: ' + condition);
-    burger.updateOne(condition, function(result) {
-        res.json({ id: result.insertId });
-    });
-});
-
-// "/reset" allows the user to reset the burgers manually
-router.put('/reset', function(req, res) {
-    burger.resetAll(function(data) {
-        var hbsObj = {
-            burgers: data
-        };
-        console.log(hbsObj);
-        console.log("*** Burgers have been reset ***");
-        res.render('index', hbsObj);
-    });
+router.put("/burgers/update", function(req, res) {
+    if (req.body.customer) {
+        db.Customer.create({
+            customer: req.body.customer,
+            BurgerId: req.body.burger_id
+        })
+        .then(function(dbCustomer) {
+            return db.Burger.update({
+                devoured: true
+            }, {
+                where: {
+                    id: req.body.burger_id
+                }
+            });
+        })
+        .then(function(dbBurger) {
+            res.json("/");
+        });
+    } 
+    else {
+        db.Burger.update({
+            devoured: true
+        }, {
+            where: {
+                id: req.body.burger_id
+            }
+        })
+        .then(function(dbBurger) {
+            res.json("/");
+        });
+    }
 });
 
 module.exports = router;

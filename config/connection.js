@@ -2,8 +2,8 @@ require('dotenv').config();
 var mysql = require('mysql');
 var pw = process.env.MYSQL_PW;
 
-if (process.env.JAWS_URL) {
-    connection = mysql.createConnection(process.env.JAWS_URL)
+if (process.env.JAWSDB_URL) {
+    connection = mysql.createConnection(process.env.JAWSDB_URL);
 } 
 else {
     connection = mysql.createConnection({
@@ -24,5 +24,7 @@ connection.connect(function(err) {
     console.log('Connected to MySQL Database as ID ' + connection.threadId);
     console.log('-------------------------------------\n');
 });
+
+connection.end();
 
 module.exports = connection;

@@ -2,6 +2,7 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 var path = require('path');
+var connection = require('./config/connection');
 
 // Define port 
 var PORT = process.env.PORT || 8000;
@@ -30,6 +31,7 @@ io.on('connection', function(socket) {
     console.log('a user connected');
     socket.on('disconnect', function() {
         console.log('Client disconnected')
+        connection.end();
     })
 });
 
